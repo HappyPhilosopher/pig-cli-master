@@ -1,6 +1,6 @@
 <template>
 	<router-link to="/" v-if="!user.isLogin">
-		<a-button type="primary" class="user-profile-component" @click="login">登录</a-button>
+		<a-button type="primary" shape="round" class="user-profile-component" @click="login">登录</a-button>
 	</router-link>
 
 	<div v-else>
@@ -59,7 +59,7 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
+<style>
 .user-profile-dropdown {
 	border-radius: 2px !important;
 }

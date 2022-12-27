@@ -16,6 +16,8 @@ import { GlobalDataProps } from '@/store';
 import TemplateList from '@/components/TemplateList.vue';
 
 export default defineComponent({
+	name: 'home',
+
 	setup() {
 		const store = useStore<GlobalDataProps>();
 		const testData = computed(() => store.state.templates.data);

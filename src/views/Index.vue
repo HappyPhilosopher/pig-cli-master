@@ -24,6 +24,8 @@ import { GlobalDataProps } from '@/store';
 import UserProfile from '@/components/UserProfile.vue';
 
 export default defineComponent({
+	name: 'index',
+
 	setup() {
 		const store = useStore<GlobalDataProps>();
 		const user = computed(() => store.state.user);
@@ -39,7 +41,7 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss">
+<style>
 .header {
 	display: flex;
 	justify-content: space-between;

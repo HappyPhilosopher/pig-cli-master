@@ -37,6 +37,8 @@ import { useRoute } from 'vue-router';
 import { useStore } from 'vuex';
 
 export default defineComponent({
+	name: 'template-detail',
+
 	setup() {
 		const route = useRoute();
 		const store = useStore<GlobalDataProps>();
@@ -55,7 +57,7 @@ export default defineComponent({
 });
 </script>
 
-<style scoped lang="scss">
+<style>
 .work-detail-container {
 	margin-top: 50px;
 }
