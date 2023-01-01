@@ -28,7 +28,7 @@
 			<a-layout-sider width="300" style="background: #fff">
 				<div class="sidebar-container">
 					组件列表
-					<components-list :list="defaultTextTemplates" @on-item-click="addItem"></components-list>
+					<ComponentsList :list="defaultTextTemplates" @on-item-click="addItem"></ComponentsList>
 				</div>
 			</a-layout-sider>
 			<a-layout style="padding: 0 24px 24px">
@@ -49,11 +49,11 @@
 			</a-layout>
 			<a-layout-sider width="300" style="background-color: #fff" class="setting-panel">
 				组件属性
-				<props-table
+				<PropsTable
 					v-if="currentElement && currentElement.props"
 					:props="currentElement.props"
 					@change="handleChange"
-				></props-table>
+				></PropsTable>
 			</a-layout-sider>
 		</a-layout>
 	</div>

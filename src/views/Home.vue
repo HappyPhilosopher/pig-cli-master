@@ -1,7 +1,7 @@
 <template>
 	<div class="content-container">
 		<a-row :gutter="16">
-			<template-list :list="testData"></template-list>
+			<TemplateList :list="testData"></TemplateList>
 		</a-row>
 		<a-row type="flex" justify="center">
 			<a-button type="primary" size="large">加载更多</a-button>
