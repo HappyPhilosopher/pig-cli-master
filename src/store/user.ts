@@ -11,7 +11,7 @@ const user: Module<UserProps, GlobalDataProps> = {
 	mutations: {
 		login(state) {
 			state.isLogin = true;
-			state.userName = 'painfulpig';
+			state.userName = 'painful_pig';
 		},
 		logout(state) {
 			state.isLogin = false;

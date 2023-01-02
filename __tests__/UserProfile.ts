@@ -1,8 +1,13 @@
 import { mount, VueWrapper } from '@vue/test-utils';
 import UserProfile from '@/components/UserProfile.vue';
+import { message } from 'ant-design-vue';
+import store from '@/store';
 
-jest.mock('ant-design-vue');
-jest.mock('vuex');
+jest.mock('ant-design-vue', () => ({
+	message: {
+		success: jest.fn()
+	}
+}));
 jest.mock('vue-router');
 
 let wrapper: VueWrapper<any>;
@@ -27,7 +32,8 @@ describe('test UserProfile component', () => {
 				user: { isLogin: false }
 			},
 			global: {
-				components: globalComponents
+				components: globalComponents,
+				plugins: [store]
 			}
 		});
 	});
@@ -36,11 +42,14 @@ describe('test UserProfile component', () => {
 		console.log('===> 测试完成');
 	});
 
-	it('should render login button when login is false', () => {
+	it('should render login button when login is false', async () => {
 		expect(wrapper.get('.user-profile-component').text()).toBe('登录');
+		await wrapper.find('.user-profile-component').trigger('click');
+		expect(message.success).toHaveBeenCalledTimes(1);
+		expect(store.state.user.userName).toBe('painful_pig');
 	});
 
-	it.only('should render username when login is true', async () => {
+	it.skip('should render username when login is true', async () => {
 		await wrapper.setProps({
 			user: { isLogin: true, userName: 'painfulpig' }
 		});

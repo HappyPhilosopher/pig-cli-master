@@ -1,7 +1,9 @@
 <template>
-	<router-link to="/" v-if="!user.isLogin">
-		<a-button type="primary" shape="round" class="user-profile-component" @click="login">登录</a-button>
-	</router-link>
+	<a-button v-if="!user.isLogin" type="primary" shape="round" class="user-profile-component" @click="login">
+		登录
+	</a-button>
+	<!-- <router-link to="/" v-if="!user.isLogin">
+	</router-link> -->
 
 	<div v-else>
 		<a-dropdown-button class="user-profile-component">
