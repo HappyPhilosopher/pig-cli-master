@@ -23,7 +23,7 @@ export const testComponents: ComponentData[] = [
 	{
 		id: uuidv4(),
 		name: 'l-text',
-		props: { text: 'hello', position: 'relative', lineHeight: '1', textAlign: 'left', fontFamily: '' }
+		props: { text: 'hello', position: 'relative', lineHeight: '1', textAlign: 'left', fontFamily: '', color: '#000000' }
 	},
 	{
 		id: uuidv4(),
