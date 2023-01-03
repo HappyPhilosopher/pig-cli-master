@@ -1,20 +1,18 @@
 <template>
-	<a-button v-if="!user.isLogin" type="primary" shape="round" class="user-profile-component" @click="login">
-		登录
-	</a-button>
-	<!-- <router-link to="/" v-if="!user.isLogin">
-	</router-link> -->
+	<a-button v-if="!user.isLogin" type="primary" shape="round" class="user-profile-component" @click="login"
+		>登录</a-button
+	>
 
 	<div v-else>
 		<a-dropdown-button class="user-profile-component">
 			<router-link to="/setting">{{ user.userName }}</router-link>
 			<template #overlay>
 				<a-menu class="user-profile-dropdown">
-					<a-menu-item key="0">创建作品</a-menu-item>
+					<!-- <a-menu-item key="0">创建作品</a-menu-item>
 					<a-menu-item key="1">
 						<router-link to="/works">我的作品</router-link>
-					</a-menu-item>
-					<a-menu-item key="2" @click="logout">登出</a-menu-item>
+					</a-menu-item> -->
+					<a-menu-item key="2" @click="logout" class="logout">登出</a-menu-item>
 				</a-menu>
 			</template>
 		</a-dropdown-button>
@@ -48,9 +46,13 @@ export default defineComponent({
 		};
 		const logout = () => {
 			store.commit('logout');
-			message.success('logout success!', 2).then(() => {
+			// message.success('logout success!', 2).then(() => {
+			// 	router.push('/');
+			// });
+			message.success('logout success!', 2);
+			setTimeout(() => {
 				router.push('/');
-			});
+			}, 2000);
 		};
 
 		return {

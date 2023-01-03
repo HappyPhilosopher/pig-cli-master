@@ -8,7 +8,12 @@ jest.mock('ant-design-vue', () => ({
 		success: jest.fn()
 	}
 }));
-jest.mock('vue-router');
+const mockedRoutes: string[] = [];
+jest.mock('vue-router', () => ({
+	useRouter: () => ({
+		push: (url: string) => mockedRoutes.push(url)
+	})
+}));
 
 let wrapper: VueWrapper<any>;
 const mockComponent = {
@@ -27,6 +32,7 @@ const globalComponents = {
 
 describe('test UserProfile component', () => {
 	beforeAll(() => {
+		jest.useFakeTimers();
 		wrapper = mount(UserProfile, {
 			props: {
 				user: { isLogin: false }
@@ -42,6 +48,10 @@ describe('test UserProfile component', () => {
 		console.log('===> 测试完成');
 	});
 
+	afterEach(() => {
+		(message as jest.Mocked<typeof message>).success.mockReset();
+	});
+
 	it('should render login button when login is false', async () => {
 		expect(wrapper.get('.user-profile-component').text()).toBe('登录');
 		await wrapper.find('.user-profile-component').trigger('click');
@@ -49,11 +59,15 @@ describe('test UserProfile component', () => {
 		expect(store.state.user.userName).toBe('painful_pig');
 	});
 
-	it.skip('should render username when login is true', async () => {
+	it('should render username when login is true', async () => {
 		await wrapper.setProps({
 			user: { isLogin: true, userName: 'painfulpig' }
 		});
 		expect(wrapper.html()).toContain('painfulpig');
 		expect(wrapper.find('.user-profile-dropdown').exists()).toBeTruthy();
+		await wrapper.find('.logout').trigger('click');
+		expect(store.state.user.isLogin).toBeFalsy();
+		jest.advanceTimersByTime(2000);
+		expect(mockedRoutes).toContain('/');
 	});
 });
